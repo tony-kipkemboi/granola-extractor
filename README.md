@@ -4,6 +4,14 @@ Extract your Granola meeting transcripts with one simple command.
 
 ---
 
+## What This Tool Does
+
+This tool reads the meeting transcripts that the **Granola app has already saved on your Mac**. When you record meetings with Granola, it automatically stores the transcripts in a local folder on your computer. This tool simply finds those files and exports them to readable markdown format.
+
+**This is NOT a cloud service.** There's no login, no API, no internet connection needed. The tool just reads files that already exist on your Mac.
+
+---
+
 ## Quick Start (2 minutes)
 
 ### Step 1: Download
@@ -96,9 +104,26 @@ python3 ~/.claude/skills/granola-extractor/extract_granola_transcripts.py --sear
 
 ---
 
-## Privacy
+## Security & Privacy
 
-Everything stays on your computer. Nothing is sent anywhere.
+**Your data never leaves your Mac.** Here's exactly what this tool does (and doesn't do):
+
+**What it reads:**
+- Only local files from `~/Library/Application Support/Granola/` on your computer
+- These are files that the Granola app already created when you recorded meetings
+
+**What it does NOT do:**
+- No cloud connections or network requests
+- No API keys required
+- No data sent to any server
+- No tracking or analytics
+- No access to anything except your local Granola files
+
+**Why you can trust it:**
+- The code is completely open source - you can read every line
+- It's a simple Python script that just reads local files and writes markdown
+- No dependencies on external services
+- Your meeting transcripts stay 100% on your machine
 
 ---
 
