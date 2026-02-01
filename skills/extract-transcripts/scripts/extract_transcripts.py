@@ -10,7 +10,7 @@ Usage:
     python3 extract_transcripts.py [output_folder] --date 2026-01-29  # Specific date
     python3 extract_transcripts.py [output_folder] --month 2026-01    # Specific month
     python3 extract_transcripts.py [output_folder] --search "standup" # Search by title
-    python3 extract_transcripts.py --list                             # List all meetings
+    python3 extract_transcripts.py --list                   # List all
     python3 extract_transcripts.py --list --month 2026-01             # List for month
 
 Requirements:
@@ -18,14 +18,13 @@ Requirements:
 - Python 3.8+ (no external dependencies)
 """
 
+import argparse
 import json
 import os
 import re
 import sys
-import argparse
 from datetime import datetime
 from pathlib import Path
-
 
 GRANOLA_CACHE = os.path.expanduser(
     "~/Library/Application Support/Granola/cache-v3.json"
@@ -53,7 +52,8 @@ def load_granola_data():
     if not os.path.exists(GRANOLA_CACHE):
         print(f"ERROR: Granola cache not found at {GRANOLA_CACHE}")
         print(
-            "\nMake sure you have Granola installed and have recorded at least one meeting."
+            "\nMake sure you have Granola installed "
+            "and have recorded at least one meeting."
         )
         sys.exit(1)
 
@@ -292,9 +292,9 @@ def format_meeting_markdown(meeting):
 
     if meeting["start"]:
         lines.append(f"**Date:** {meeting['start'].strftime('%A, %B %d, %Y')}")
-        lines.append(
-            f"**Time:** {meeting['start'].strftime('%I:%M %p')} - {meeting['end'].strftime('%I:%M %p') if meeting['end'] else 'Unknown'}"
-        )
+        start_time = meeting["start"].strftime("%I:%M %p")
+        end_time = meeting["end"].strftime("%I:%M %p") if meeting["end"] else "Unknown"
+        lines.append(f"**Time:** {start_time} - {end_time}")
     lines.append(f"**Duration:** {meeting['duration_minutes']} minutes")
 
     if meeting["attendees"]:
@@ -318,7 +318,9 @@ def format_meeting_markdown(meeting):
     lines.append("## Transcript")
     lines.append("")
     lines.append(
-        "> **Speaker Labels:** `ME` = your microphone | `OTHERS` = all remote participants (Granola doesn't distinguish individual remote speakers)"
+        "> **Speaker Labels:** `ME` = your microphone | "
+        "`OTHERS` = all remote participants "
+        "(Granola doesn't distinguish individual remote speakers)"
     )
     lines.append("")
     lines.append(meeting["transcript"])
@@ -462,9 +464,9 @@ Examples:
         if earliest.date() == latest.date():
             print(f"Date: {earliest.strftime('%Y-%m-%d')}")
         else:
-            print(
-                f"Date range: {earliest.strftime('%Y-%m-%d')} to {latest.strftime('%Y-%m-%d')}"
-            )
+            start_date = earliest.strftime("%Y-%m-%d")
+            end_date = latest.strftime("%Y-%m-%d")
+            print(f"Date range: {start_date} to {end_date}")
         print()
 
     print("Saving transcripts...")
