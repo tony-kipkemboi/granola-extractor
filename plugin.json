@@ -1,0 +1,13 @@
+{
+  "name": "granola-extractor",
+  "version": "1.0.0",
+  "description": "Extract and organize Granola meeting transcripts by year and month",
+  "author": "Guild Engineering",
+  "skills": [
+    {
+      "name": "granola-extractor",
+      "path": "skills/extract-transcripts",
+      "description": "Extract Granola meeting transcripts and organize them by year/month. Just say 'extract my Granola transcripts' or 'export my meetings'."
+    }
+  ]
+}
