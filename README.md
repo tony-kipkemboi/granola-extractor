@@ -1,135 +1,105 @@
 # Granola Transcript Extractor
 
-A Claude Code plugin that extracts and organizes your Granola meeting transcripts by year and month.
+Extract your Granola meeting transcripts with one simple command.
 
-## Installation
+---
 
-### Option 1: Claude Code Plugin (Recommended for non-technical users)
+## Quick Start (2 minutes)
 
-1. Clone or download this repo
-2. Copy the folder to `~/.claude/plugins/granola-extractor`
-3. Restart Claude Code
-4. Just ask: **"Extract my Granola transcripts"**
+### Step 1: Download
 
-```bash
-# Quick install
-git clone https://github.com/your-org/granola-extractor.git
-cp -r granola-extractor ~/.claude/plugins/
-```
-
-### Option 2: Standalone Script
-
-Run the Python script directly:
+Open Terminal and paste:
 
 ```bash
-python3 extract_granola_transcripts.py
+git clone https://github.com/tony-kipkemboi/granola-extractor.git ~/.claude/skills/granola-extractor
 ```
 
-## Usage
+### Step 2: Use it
 
-### With Claude Code (after installing plugin)
+Open Claude Code and just ask:
 
-Just ask Claude naturally:
+> "Extract my Granola transcripts"
 
-- **"Extract all my Granola transcripts"** - Exports everything
-- **"Get yesterday's meeting"** - Extracts specific date
-- **"Extract January meetings"** - Extracts specific month
-- **"Find the standup transcript"** - Searches by title
-- **"What meetings do I have?"** - Lists available meetings
+That's it! Claude will ask where to save them and do the rest.
 
-### Standalone Script
+---
 
-```bash
-# Extract all meetings
-python3 extract_granola_transcripts.py
+## What You Can Ask Claude
 
-# Extract to custom folder
-python3 extract_granola_transcripts.py ~/Desktop/meetings
+| What you want | What to say |
+|---------------|-------------|
+| Get all transcripts | "Extract my Granola transcripts" |
+| Get yesterday's meeting | "Get my meeting from yesterday" |
+| Get a specific month | "Extract my January meetings" |
+| Find a specific meeting | "Find the standup transcript" |
+| See what's available | "List my Granola meetings" |
 
-# Extract specific date
-python3 extract_granola_transcripts.py ~/Desktop/meetings --date 2026-01-29
+---
 
-# Extract specific month
-python3 extract_granola_transcripts.py ~/Desktop/meetings --month 2026-01
+## Where Your Transcripts Go
 
-# Search by title
-python3 extract_granola_transcripts.py ~/Desktop/meetings --search "standup"
-
-# List all meetings (don't extract)
-python3 extract_granola_transcripts.py --list
-
-# List meetings for a month
-python3 extract_granola_transcripts.py --list --month 2026-01
-```
-
-## Output Structure
+Files are organized by year and month:
 
 ```
 GranolaTranscripts/
 ├── 2025/
 │   ├── 01-January/
-│   │   ├── 2025-01-15_Team-Standup.md
-│   │   └── 2025-01-16_1-on-1-with-Manager.md
+│   │   └── 2025-01-15_Team-Standup.md
 │   └── 02-February/
-│       └── ...
 └── 2026/
     └── 01-January/
-        └── ...
 ```
-
-## Speaker Labels
-
-Each transcript shows:
-- **ME** = Your microphone (what you said)
-- **OTHERS** = All remote participants combined
-
-> **Note:** Granola captures your mic separately from call audio, but doesn't identify individual remote speakers. So if you're on a call with 3 people, all their voices appear as "OTHERS".
-
-## Example Output
-
-```markdown
-# Weekly Team Standup
-
-**Date:** Monday, January 27, 2025
-**Time:** 10:00 AM - 10:30 AM
-**Duration:** 28.5 minutes
-**Attendees:** John Smith, Jane Doe, Bob Wilson
 
 ---
 
-## Transcript
+## Understanding Speaker Labels
 
-> **Speaker Labels:** `ME` = your microphone | `OTHERS` = all remote participants
+In each transcript you'll see:
 
-**ME:** Good morning everyone, let's get started with our standup.
+- **ME** = What you said (your microphone)
+- **OTHERS** = Everyone else on the call
 
-**OTHERS:** Morning! I'll go first. Yesterday I finished the API integration...
+> Note: Granola can't tell individual remote speakers apart, so all other voices show as "OTHERS".
 
-**ME:** Great work on that. Any blockers?
-
-**OTHERS:** No blockers, but I could use a review on the PR when you get a chance.
-```
-
-## Requirements
-
-- **macOS** (Granola is a Mac app)
-- **Python 3.8+** (pre-installed on macOS)
-- **Granola app** with at least one recorded meeting
-- **No external dependencies**
+---
 
 ## Troubleshooting
 
-### "Granola cache not found"
-Make sure Granola is installed and you've recorded at least one meeting.
+**"Granola data not found"**
+→ Make sure Granola is installed and you've recorded at least one meeting.
 
-### "No meetings found"
-- Check the date/month format: `YYYY-MM-DD` for dates, `YYYY-MM` for months
-- Try `--list` first to see available meetings
-
-## Privacy
-
-This tool only reads your **local** Granola data. Nothing is sent anywhere - your transcripts stay on your machine.
+**"No meetings found"**
+→ Try "List my Granola meetings" first to see what's available.
 
 ---
 
-*Created by Guild Engineering Team*
+## For Advanced Users
+
+You can also run the script directly:
+
+```bash
+# List all meetings
+python3 ~/.claude/skills/granola-extractor/extract_granola_transcripts.py --list
+
+# Extract all to Documents folder
+python3 ~/.claude/skills/granola-extractor/extract_granola_transcripts.py
+
+# Extract specific date
+python3 ~/.claude/skills/granola-extractor/extract_granola_transcripts.py --date 2026-01-29
+
+# Extract specific month
+python3 ~/.claude/skills/granola-extractor/extract_granola_transcripts.py --month 2026-01
+
+# Search by title
+python3 ~/.claude/skills/granola-extractor/extract_granola_transcripts.py --search "standup"
+```
+
+---
+
+## Privacy
+
+Everything stays on your computer. Nothing is sent anywhere.
+
+---
+
+*Questions? Ping Tony on Slack.*
