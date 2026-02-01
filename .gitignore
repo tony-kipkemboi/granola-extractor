@@ -26,3 +26,5 @@ Thumbs.db
 
 # Local config
 *.local.md
+.coverage
+.pytest_cache/
